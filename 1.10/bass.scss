@@ -78,6 +78,7 @@ $margin: 5px;
 
 html, body {
   @include percentage;
+  background: url("img/bg.jpg")center/cover;
 }
 
 body {

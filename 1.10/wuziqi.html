@@ -79,7 +79,7 @@
                     console.log(pos)
                     $('#' + pos.x + "_" + pos.y)
                         .addClass('bai')
-                        .css({boxShadow :' 0 0 5px 1px #ccc inset'});
+                        .css({boxShadow :' 0 0 5px 1px #ccc '});
                     bai[pos.x + "_" + pos.y] = true;
                     delete blank[pos.x + "_" + pos.y];
                     if (win(pos, bai) >= 5) {
