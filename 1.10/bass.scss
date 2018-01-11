@@ -1,0 +1,267 @@
+@mixin auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin percentage {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin fullPage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@mixin widthAuto($left) {
+  position: absolute;
+  left: $left;
+
+}
+
+@mixin centerp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin centerAuto {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+@mixin centerTra {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+
+}
+
+@mixin centerMar($width,$height) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -$width/2;
+  margin-top: -$height/2;
+}
+
+@mixin circle {
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -ms-border-radius: 50%;
+}
+
+@mixin cborderRadius($radius) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -ms-border-radius: $radius;
+}
+
+$width: 600px;
+$row: 15;
+$margin: 5px;
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+html, body {
+  @include percentage;
+}
+
+body {
+  overflow: hidden;
+  background: #cbc9c629;
+}
+
+.qipan {
+  width: $width;
+  height: $width;
+  @include centerTra;
+  background: #f4f1f0;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 10px 10px #ccc;
+  .qizi {
+    margin: $margin;
+    width: $width / $row - $margin * 2;
+    height: $width / $row - $margin * 2;
+    display: block;
+    float: left;
+    @include circle;
+    position: relative;
+    z-index: 999;
+  }
+  .hei {
+    background-color: #000000;
+  }
+  .bai {
+    background-color: #ffffff;
+  }
+  i {
+    width: $width - $width / $row;
+    height: 1px;
+    position: absolute;
+    left: $width / $row / 2;
+    background: #000;
+    transform: translate3d(0, -1000px, 0);
+    //transform: rotate3d(0,0,0,0);
+  }
+  b {
+    height: $width - $width / $row;
+    width: 1px;
+    position: absolute;
+    top: $width / $row / 2;
+    background: #000;
+    transform: translate3d(-1000px, 0, 0);
+    //transform: rotate3d(0,0,0,0);
+  }
+  .win {
+    padding: 20px;
+    font-size: 40px;
+    line-height: 60px;
+    text-align: center;
+    @include centerTra;
+    background-color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    z-index: 9999;
+    border-radius: 20px;
+    transition: all 1s;
+
+  }
+  .black {
+    display: none;
+  }
+  .white {
+    display: none;
+  }
+  div.point {
+    width: $width /$row / 4;
+    height: $width /$row / 4;
+    @include circle;
+    background-color: #000;
+    position: absolute;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 999;
+  }
+  div.point:nth-of-type(1) {
+    left: 3.5 * $width / $row;
+    top: 3.5 * $width / $row;
+    animation: point 1000ms ease forwards;
+  }
+  div.point:nth-of-type(2) {
+    left: 11.5 * $width / $row;
+    top: 3.5 * $width / $row;
+    animation: point 1000ms ease forwards;
+  }
+  div.point:nth-of-type(3) {
+    left: 7.5 * $width / $row;
+    top: 7.5 * $width / $row;
+    animation: point 1500ms ease forwards;
+  }
+  div.point:nth-of-type(4) {
+    left: 3.5 * $width / $row;
+    top: 11.5 * $width / $row;
+    animation: point 2000ms ease forwards;
+
+  }
+  div.point:nth-of-type(5) {
+    left: 11.5 * $width / $row;
+    top: 11.5 * $width / $row;
+    animation: point 2000ms ease forwards;
+
+  }
+  .btn {
+    position: absolute;
+    top: $width / $row * 4;
+    right: -150px;
+
+  }
+  .one {
+    width: 100%;
+    border: 1px solid #000;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    margin:10px;
+    padding:4px
+  }
+  .two {
+    border: 1px solid #000;
+    width: 100%;
+    font-size: 24px;
+    line-height:30px;
+    text-align: center;
+    margin:10px;
+    padding:4px
+  }
+  @for $i from 1 through $row {
+    i:nth-of-type(#{$i}) {
+      top: ( 2 * $i - 1) * $width / $row / 2;
+      animation: diaoluo .5s ease $i*100ms forwards;
+    }
+    b:nth-of-type(#{$i}) {
+      left: ( 2 * $i - 1) * $width / $row / 2;
+      animation: flyR .5s ease $i*100ms forwards;
+    }
+  }
+}
+
+@keyframes point {
+  from {
+    transform: translate3d(0, -1000px, 0);
+  }
+  to {
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+@keyframes diaoluo {
+  0% {
+    transform: translate3d(-1000px, -1000px, 0);
+    //transform: rotate3d(0.5,0.5,0,90deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    //transform: rotate3d(0,0,0,0);
+
+  }
+}
+
+@keyframes flyR {
+  0% {
+    transform: translate3d(-1000px, -1000px, 0);
+    //transform: rotate3d(0.5,0.5,0,-90deg);
+
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    //transform: rotate3d(0,0,0,0);
+
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
